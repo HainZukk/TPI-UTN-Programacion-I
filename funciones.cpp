@@ -27,7 +27,8 @@ string solicitarNombreDescendiente()
 }
 
 // Fn que muestra msj de derrota
-void showMessageDefeat(string nombreJugadorActual, const int TIRADAS_TOTALES, bool estado_sigilos[], const string NOMBRES_DEMONIOS[], const int CANT_DEMONIOS){
+void showMessageDefeat(string nombreJugadorActual, const int TIRADAS_TOTALES, bool estado_sigilos[], const string NOMBRES_DEMONIOS[], const int CANT_DEMONIOS)
+{
     // TODO: Falta colocar los nombres de los demonios sellados y demonios libres
     cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! " << endl;
     cout << endl
@@ -42,7 +43,7 @@ void showMessageDefeat(string nombreJugadorActual, const int TIRADAS_TOTALES, bo
     cout << endl
          << TIRADAS_TOTALES << " invocaciones agotadas" << endl;
 
-    //Funcion para estado de los demonios (SELLADO - LIBRE)
+    // Funcion para estado de los demonios (SELLADO - LIBRE)
     DemoniosPorEstado(estado_sigilos, NOMBRES_DEMONIOS, CANT_DEMONIOS);
     cout << endl
          << "Presiona cualquier tecla para continuar..." << endl;
@@ -93,12 +94,6 @@ void menuPrincipal()
     const string ELEMENTOS_SOMBRAS[] = {"Sombra del Fuego", "Sombra del Agua", "Sombra de la Tierra", "Sombra del Aire", "Sombra Mayor"};
 
     int tiradaActual = 0;
-
-
-    //Estas variables no se utilizan ya que estan declaradas localmente en jugar().
-    // bool estado_sigilos[5] = {};
-    // bool demonios_disponibles[5] = {};
-
     int opcion;
     int invocacionesJugadorGuardado;
 
@@ -226,7 +221,8 @@ void jugar(string &nombreJugadorActual, string &nombreJugadorGuardado, int &invo
 
         tiradaActual++;
 
-        for (int i = 0; i < CANT_DEMONIOS; i++){
+        for (int i = 0; i < CANT_DEMONIOS; i++)
+        {
             demonios_disponibles[i] = false;
         }
 
@@ -254,8 +250,10 @@ void jugar(string &nombreJugadorActual, string &nombreJugadorGuardado, int &invo
 
             // Implementacion de funcion de Lazamanus
 
-            if (!estado_sigilos[4]){
-                if (lazamanusEvent(nombreJugadorActual)){
+            if (!estado_sigilos[4])
+            {
+                if (lazamanusEvent(nombreJugadorActual))
+                {
                     derrota(derrotasTotales, nombreJugadorActual, TIRADAS_TOTALES, estado_sigilos, NOMBRES_DEMONIOS, CANT_DEMONIOS);
 
                     return;
@@ -289,22 +287,27 @@ void jugar(string &nombreJugadorActual, string &nombreJugadorGuardado, int &invo
 
 // Funcion estadisticas
 
-void estadisticas(string &nombreJugadorActual, string &nombreJugadorGuardado, int &invocacionesJugadorGuardado, int victoriasTotales, int derrotasTotales, const int CANT_DEMONIOS, const int TIRADAS_TOTALES)
+void estadisticas(string &nombreJugadorActual, string &nombreJugadorGuardado, int invocacionesJugadorGuardado, int victoriasTotales, int derrotasTotales, const int CANT_DEMONIOS, const int TIRADAS_TOTALES)
 {
     int totalDePartidas = victoriasTotales + derrotasTotales;
     cout << " ::::: PANTALLA ESTADISTICAS ::::: " << endl
          << endl;
 
-    cout
-        << nombreJugadorGuardado << " fue quien sello a los " << CANT_DEMONIOS << " demonios mas rapidamente en " << invocacionesJugadorGuardado << " invocaciones" << endl;
-    cout << endl;
+    if (victoriasTotales != 0)
+    {
+        cout
+            << nombreJugadorGuardado << " fue quien sello a los " << CANT_DEMONIOS << " demonios mas rapidamente en " << invocacionesJugadorGuardado << " invocaciones" << endl;
+        cout << endl;
+    }
+    else
+        cout << "aun no hay victorias" << endl;
     cout << "TOTAL DE PARTIDAS: " << totalDePartidas << endl;
     cout << "VICTORIAS: " << victoriasTotales << endl;
     cout << "DERROTAS: " << derrotasTotales << endl;
     cout << endl;
     cout << " Presiona una tecla para continuar... " << endl
          << endl;
-    // pausar la ejecución de un programa de consola hasta que el usuario presione Enter.
+
     cin.ignore();
     cin.get();
 }
@@ -313,11 +316,10 @@ void estadisticas(string &nombreJugadorActual, string &nombreJugadorGuardado, in
 
 void creditos()
 {
-    // TODO: Faltan agregar los numeros de los legajos
     string apellido1 = "Nguyen ";
     string apellido2 = "Rodriguez ";
     int legajo1 = 32580;
-    int legajo2 = 31;
+    int legajo2 = 31685;
     string nombre1 = "Tobias";
     string nombre2 = "Paula";
 
@@ -427,9 +429,9 @@ int elegirDemonio(int cantOpciones)
     return eleccion;
 }
 
-
-// Nueva funcion de Lazamanus 
-bool lazamanusEvent(string nombreJugadorActual){
+// Nueva funcion de Lazamanus
+bool lazamanusEvent(string nombreJugadorActual)
+{
     cout << "LAZAMANUS acecha.... tira tres dados" << endl;
     cin.ignore();
     cin.get();
@@ -440,33 +442,35 @@ bool lazamanusEvent(string nombreJugadorActual){
 
     cout << "Dados de Lazamanus: [" << d1 << "] [" << d2 << "] [" << d3 << "]" << endl;
 
-    if (d1 == 6 && d2 == 6 && d3 == 6){
+    if (d1 == 6 && d2 == 6 && d3 == 6)
+    {
         cout << "Triple 6 , Lazamanus te ha atrapado en el libro." << endl;
         return true;
     }
-    
+
     cout << "Lograste escapar de Lazamanus ... Por ahora" << endl;
     return false;
 }
 
-
-
 // Funcion para estadistica
-void DemoniosPorEstado(bool estado_sigilos[],const string NOMBRES_DEMONIOS[] , const int CANT_DEMONIOS){
+void DemoniosPorEstado(bool estado_sigilos[], const string NOMBRES_DEMONIOS[], const int CANT_DEMONIOS)
+{
     cout << "Demonios sellados:" << endl;
 
-    for (int i = 0; i < CANT_DEMONIOS; i++){
-        if (estado_sigilos[i]){
+    for (int i = 0; i < CANT_DEMONIOS; i++)
+    {
+        if (estado_sigilos[i])
+        {
             cout << "- " << NOMBRES_DEMONIOS[i] << endl;
         }
     }
 
     cout << "Demonios libres:" << endl;
-    for (int i = 0; i < CANT_DEMONIOS; i++){
-        if (!estado_sigilos[i]){
+    for (int i = 0; i < CANT_DEMONIOS; i++)
+    {
+        if (!estado_sigilos[i])
+        {
             cout << "- " << NOMBRES_DEMONIOS[i] << endl;
-
         }
-            
     }
 }
