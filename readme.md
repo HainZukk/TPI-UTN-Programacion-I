@@ -5,13 +5,13 @@ Un juego de consola desarrollado en **C++** donde el jugador debe sellar a cinco
 
 ---
 
-## 📖 Historia
+## Historia
 
 Una antigua maldición ha liberado a cinco demonios oscuros, cada uno ligado a un elemento de las sombras. Como el último descendiente del linaje elegido, deberás invocar los sigilos correctos tirando los dados para sellarlos uno a uno. ¿Tendrás el coraje y la suerte suficiente?
 
 ---
 
-## 🎮 Mecánicas del juego
+## Mecánicas del juego
 
 - El jugador tiene un número limitado de **tiradas de dados**.
 - Cada tirada puede habilitar o deshabilitar opciones para sellar demonios.
@@ -47,7 +47,7 @@ g++ main.cpp funciones.cpp -o juego
 
 ---
 
-## 🧩 Funciones principales
+## Funciones principales
 
 | Función | Descripción |
 |---|---|
@@ -63,12 +63,12 @@ g++ main.cpp funciones.cpp -o juego
 
 ---
 
-## 👥 Integrantes — Rodriguez Paula , Nguyen Tobias.
+## Integrantes — Rodriguez Paula , Nguyen Tobias.
 
 Trabajo desarrollado en grupo para la materia **Programación I** de la **Universidad Tecnológica Nacional (UTN)**.
 
 ---
 
-## 📌 Notas
+## Notas
 
 - El proyecto fue desarrollado con fines académicos.
