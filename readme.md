@@ -24,7 +24,12 @@ Una antigua maldición ha liberado a cinco demonios oscuros, cada uno ligado a u
 ## Estructura del proyecto
 
 ```
-
+TPI-UTN-Programacion-I/
+├── .gitignore
+├── funciones.cpp
+├── funciones.h
+├── main.cpp
+└── readme.md
 ```
 
 ---
