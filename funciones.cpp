@@ -9,8 +9,6 @@ string solicitarNombreDescendiente()
 {
     string nombreJugadorActual;
     char confirmar;
-
-    // TODO: FALTARIA AJUSTAR QUE CUANDO INGRESA UN SI o un si, LO TOME (HECHO PAU)
     do
     {
         cout << " ----------- Ingrese el nombre del jugador: -----------" << endl;
@@ -27,9 +25,8 @@ string solicitarNombreDescendiente()
 }
 
 // Fn que muestra msj de derrota
-void showMessageDefeat(string nombreJugadorActual, const int TIRADAS_TOTALES, bool estado_sigilos[], const string NOMBRES_DEMONIOS[], const int CANT_DEMONIOS)
+void mostrarMensajeDerrota(string nombreJugadorActual, const int TIRADAS_TOTALES, bool estado_sigilos[], const string NOMBRES_DEMONIOS[], const int CANT_DEMONIOS)
 {
-    // TODO: Falta colocar los nombres de los demonios sellados y demonios libres
     cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! " << endl;
     cout << endl
          << "AMANECE Y LOS SIGILOS SIGUEN BRILLANDO. " << endl;
@@ -53,7 +50,7 @@ void showMessageDefeat(string nombreJugadorActual, const int TIRADAS_TOTALES, bo
 }
 
 // Fn que muestra msj de victoria
-void showMessageVictory(string nombreJugadorActual, int invocacionesJugadorGuardado)
+void mostrarMensajeVictoria(string nombreJugadorActual, int tiradaActual)
 {
     cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! " << endl;
     cout << endl
@@ -69,8 +66,8 @@ void showMessageVictory(string nombreJugadorActual, int invocacionesJugadorGuard
     cout << endl
          << "FIN DE LA PARTIDA - VICTORIA " << endl;
     cout << endl
-         << "Sellaste a los cinco demonios" << endl;
-    cout << "Invocaciones utilizadas " << invocacionesJugadorGuardado << "de 15" << endl;
+         << "Sellaste a los 5 demonios" << endl;
+    cout << "Invocaciones utilizadas " << tiradaActual << " de 15" << endl;
 
     cout << "Presiona cualquier tecla para continuar..." << endl;
     cout << "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" << endl;
@@ -81,12 +78,11 @@ void showMessageVictory(string nombreJugadorActual, int invocacionesJugadorGuard
 // Funcion tirar dados
 int tirarDado()
 {
-    return (rand() % 6) + 1; // funcion aleatoria que genera un rango de 1 a 6
+    return (rand() % 6) + 1;
 }
 
 void menuPrincipal()
 {
-    // variables a usar, se colocan en este nivel para que puedan estar disponibles en las funciones jugar y estadisticas, para que se pasen dinamicamente
     const int CANT_DEMONIOS = 5;
     const int TIRADAS_TOTALES = 15;
 
@@ -105,7 +101,6 @@ void menuPrincipal()
     string nombreJugadorGuardado;
 
     do
-    // system("cls") limpia la pantalla
     {
         cout << " ::::: LOS CINCO DEMONIOS :::::" << endl;
         cout << "------------------------------" << endl;
@@ -138,12 +133,10 @@ void menuPrincipal()
                 break;
             }
         }
-        // system("pause > nul") limpia la pantalla con >null hace una pausa
 
     } while (opcion != 0);
 }
 
-// ---Funcion que ejecuta el lore del juego
 void lore(string nombreJugadorActual)
 {
     cout << "Iniciando juego para: " << nombreJugadorActual << endl
@@ -160,7 +153,7 @@ void lore(string nombreJugadorActual)
 void derrota(int &derrotasTotales, string nombreJugadorActual, const int TIRADAS_TOTALES, bool estado_sigilos[], const string NOMBRES_DEMONIOS[], const int CANT_DEMONIOS)
 {
     derrotasTotales++;
-    showMessageDefeat(nombreJugadorActual, TIRADAS_TOTALES, estado_sigilos, NOMBRES_DEMONIOS, CANT_DEMONIOS);
+    mostrarMensajeDerrota(nombreJugadorActual, TIRADAS_TOTALES, estado_sigilos, NOMBRES_DEMONIOS, CANT_DEMONIOS);
 }
 
 // funcion de victoria
@@ -170,6 +163,8 @@ void ganar(int &victoriasTotales, int demoniosSellados, int CANT_DEMONIOS, strin
     if (demoniosSellados == CANT_DEMONIOS)
     {
         cout << "Ganaste." << endl;
+
+        mostrarMensajeVictoria(nombreJugadorActual, tiradaActual);
         if (nombreJugadorGuardado == "") // si el nombre del jugador guardado esta vacio
         {
             nombreJugadorGuardado = nombreJugadorActual;
@@ -211,10 +206,9 @@ void jugar(string &nombreJugadorActual, string &nombreJugadorGuardado, int &invo
     bool estado_sigilos[5] = {};
     bool demonios_disponibles[5] = {};
 
-    lore(nombreJugadorActual); // fn que ejecuta el lore del juego
+    lore(nombreJugadorActual);
 
     srand(time(NULL));
-    // sran(time(0)) --> inicializo en 0 para numeros al azar
 
     while (tiradaActual < TIRADAS_TOTALES && demoniosSellados < CANT_DEMONIOS)
     {
